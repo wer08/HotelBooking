@@ -17,5 +17,5 @@ public class Hotel
     private int number_of_rooms_2;
     private int number_of_rooms_3;
     private float price;
-
+    String city;
 }

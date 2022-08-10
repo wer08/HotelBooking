@@ -1,10 +1,5 @@
 package pl.wer08.HotelBooking;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-
-import javax.annotation.PostConstruct;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,7 +17,7 @@ public class LogIn
     public JPanel LogIn;
 
 
-    public LogIn(Client client,ClientHandler clientHandler)
+    public LogIn(Client client, ClientHandler clientHandler, HotelHandler hotelHandler)
     {
         registerButton.addActionListener(new ActionListener()
         {
@@ -42,6 +37,7 @@ public class LogIn
         });
         logInButton.addActionListener(new ActionListener()
         {
+
             @Override
             public void actionPerformed(ActionEvent e)
             {
@@ -55,7 +51,15 @@ public class LogIn
                     {
                         if(clientHandler.checkPassword(textField1.getText(),String.valueOf(passwordField1.getPassword())))
                         {
+                            JFrame frame;
+                            frame = (JFrame) logInButton.getRootPane().getParent();
+                            frame.dispose();
                             JOptionPane.showMessageDialog(null, "You are logged in");
+                            JFrame frame2 = new JFrame("HotelChoice");
+                            frame2.setContentPane(new HotelChoice(hotelHandler).HotelChoice);
+                            frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                            frame2.pack();
+                            frame2.setVisible(true);
                         }
                         else
                         {
@@ -70,4 +74,6 @@ public class LogIn
             }
         });
     }
+
+
 }
