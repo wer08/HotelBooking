@@ -15,6 +15,6 @@ public class HotelRepository
 
     public List<Hotel> getChosen(String input)
     {
-        return jdbcTemplate.query("SELECT name,price FROM hotel WHERE city = ? OR name = ?", BeanPropertyRowMapper.newInstance(Hotel.class),input,input);
+        return jdbcTemplate.query("SELECT id,city,name,price FROM hotel WHERE city LIKE ? OR name LIKE ?", BeanPropertyRowMapper.newInstance(Hotel.class),"%"+input+"%","%"+input+"%");
     }
 }

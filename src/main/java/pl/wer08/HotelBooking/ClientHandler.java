@@ -9,6 +9,10 @@ public class ClientHandler
     @Autowired
     ClientRepository clientRepository;
 
+    public Client getNames(String username)
+    {
+        return clientRepository.setName(username);
+    }
     public void addClient(Client client)
     {
         clientRepository.addClient(client);
@@ -17,7 +21,7 @@ public class ClientHandler
     {
         return clientRepository.checkClient(username);
     }
-    public boolean checkPassword(String username, String password)
+    public Client checkPassword(String username, String password)
     {
         return clientRepository.checkPassword(username, password);
     }

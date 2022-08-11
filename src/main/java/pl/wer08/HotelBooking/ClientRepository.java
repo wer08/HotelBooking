@@ -28,16 +28,21 @@ public class ClientRepository
         }
         return false;
     }
-    public boolean checkPassword(String username, String password)
+    public Client setName(String username)
     {
-        Client client = jdbcTemplate.queryForObject("SELECT username,password FROM client WHERE username = ?", BeanPropertyRowMapper.newInstance(Client.class),username);
+        Client client = jdbcTemplate.queryForObject("SELECT name,surname FROM client WHERE username =?",BeanPropertyRowMapper.newInstance(Client.class),username);
+        return client;
+    }
+    public Client checkPassword(String username, String password)
+    {
+        Client client = jdbcTemplate.queryForObject("SELECT username,password,name,surname FROM client WHERE username = ?", BeanPropertyRowMapper.newInstance(Client.class),username);
         if(client.getPassword().equals(password))
         {
-            return true;
+            return client;
         }
         else
         {
-            return false;
+            return null;
         }
     }
 

@@ -17,7 +17,8 @@ public class LogIn
     public JPanel LogIn;
 
 
-    public LogIn(Client client, ClientHandler clientHandler, HotelHandler hotelHandler)
+
+    public LogIn(Client client, ClientHandler clientHandler, HotelHandler hotelHandler, ReservationHandler reservationHandler)
     {
         registerButton.addActionListener(new ActionListener()
         {
@@ -49,14 +50,15 @@ public class LogIn
                     }
                     else
                     {
-                        if(clientHandler.checkPassword(textField1.getText(),String.valueOf(passwordField1.getPassword())))
+                        Client client1 = clientHandler.checkPassword(textField1.getText(),String.valueOf(passwordField1.getPassword()));
+                        if( client1 != null)
                         {
                             JFrame frame;
                             frame = (JFrame) logInButton.getRootPane().getParent();
                             frame.dispose();
                             JOptionPane.showMessageDialog(null, "You are logged in");
                             JFrame frame2 = new JFrame("HotelChoice");
-                            frame2.setContentPane(new HotelChoice(hotelHandler).HotelChoice);
+                            frame2.setContentPane(new HotelChoice(hotelHandler,client1,reservationHandler).HotelChoice);
                             frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                             frame2.pack();
                             frame2.setVisible(true);

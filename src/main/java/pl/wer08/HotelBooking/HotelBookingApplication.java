@@ -21,6 +21,8 @@ public class HotelBookingApplication implements CommandLineRunner
 	ClientHandler clientHandler;
 	@Autowired
 	HotelHandler hotelHandler;
+	@Autowired
+	ReservationHandler reservationHandler;
 
 
 	public static void main(String[] args) {
@@ -35,7 +37,7 @@ public class HotelBookingApplication implements CommandLineRunner
 	public void run(String... args) throws Exception
 	{
 		JFrame frame = new JFrame("LogIn");
-		frame.setContentPane(new LogIn(client,clientHandler,hotelHandler).LogIn);
+		frame.setContentPane(new LogIn(client,clientHandler,hotelHandler,reservationHandler).LogIn);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
